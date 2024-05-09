@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "http-server -p 8080"
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "",
   "dependencies": {
-    "http-server": "^14.1.1"
+    
   }
 }
