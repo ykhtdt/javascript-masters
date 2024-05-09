@@ -68,8 +68,67 @@ console.log(animal['like food']);
 
 // 점(.) 표기법으로 다음은 가능
 const key2 = prompt('What information do you want to know?', 'name');
-alert(animal.key2);
+alert(animal.key2); // 프롬프트에서 name을 입력했다면 'choco'
 
 // 점(.) 표기법으로 다음은 불가능
 const key3 = 'like food';
 console.log(animal.key2); // undefined
+
+// 계산된 프로퍼티: 객체 리터럴 안의 프로퍼티 키가 대괄호로 된 경우
+const fruit = prompt('Which fruit would you like to buy?', 'apple');
+
+const market = {
+  [fruit]: 500,
+};
+
+alert(market.apple); // fruit에 apple을 입력했다면 500
+
+const brand = 'apple';
+const computer = {
+  [brand + 'Computer']: 'mac',
+};
+
+console.log(computer.appleComputer);
+
+// 단축 프로퍼티 - 프로퍼티의 이름과 값이 변수의 이름과 동일
+const makeUser = (name, age) => {
+  // return {
+  //   name: name,
+  //   age: age,
+  // };
+  return {
+    name,
+    age,
+  };
+}
+
+const user = makeUser("John", 30);
+console.log(user.name)
+
+// 변수명에는 예약어를 사용할 수 없는 제약사항이 있으나 객체 프로퍼티에는 없다.
+const obj = {
+  for: 1,
+  let: 2,
+  const: 3,
+  return: 4,
+};
+
+console.log(obj.for, obj.let, obj.const, obj.return);
+
+// 프로퍼티 키가 문자형이나 심볼형이 아닌 경우 문자열로 자동 형 변환이 된다.
+const obj2 = {
+  0: "apple",
+};
+
+console.log(obj2["0"], obj2[0]); // 동일한 프로퍼티에 접근
+
+// 단, __proto__는 다르다. 아래 코드에서 5를 할당해도 무시된다.
+// @TODO 추후 프로토타입에서 자세히 알아보고 링크
+const obj3 = {
+  __proto__: 5,
+};
+
+const obj4 = {};
+obj4.__proto__ = 5;
+
+console.log(obj3.__proto__, obj4.__proto__); // [Object: null prototype] {}
