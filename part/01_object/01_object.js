@@ -132,3 +132,54 @@ const obj4 = {};
 obj4.__proto__ = 5;
 
 console.log(obj3.__proto__, obj4.__proto__); // [Object: null prototype] {}
+
+// 객체의 프로퍼티 존재 여부 체크
+const info = {
+  address: "abc",
+  phone: undefined,
+};
+
+// 존재하지 않는 프로퍼티에 접근하면 에러가 발생하지 않고 undefined를 반환
+console.log(info.name === undefined); // true
+console.log(info.address === undefined); // false
+
+// in 연산자로 프로퍼티 존재 여부 확인
+console.log("name" in info); // false
+console.log("address" in info); // true
+
+// 아래와 같은 경우로 값이 알 수 없거나 비어 있다면 null을 사용할 것
+// 프로퍼티의 존재 여부는 in 연산자가 더 적합하다.
+console.log(info.phone); // undefined
+console.log("phone" in info); // true
+
+for (const key in info) {
+  console.log(key); // address, phone
+}
+
+// 객체 정렬 방식
+// 정수 프로퍼티는 자동으로 정렬, 그 외의 프로퍼티는 객체에 추가한 순서 그대로 정렬된다.
+// 정수 프로퍼티: 예로 문자열 "49"는 정수로 변환하거나 변환한 정수를 다시 문자열료 바꿔도 변형이 없다.
+const codes1 = {
+  "49": "독일",
+  "41": "스위스",
+  "44": "영국",
+  "1": "미국",
+};
+
+for (const code in codes1) {
+  console.log(code); // 1, 41, 44, 49
+}
+
+// 프로퍼티가 정수로 취급되지 않도록 처리해서 하면 추가한 순서 그대로 정렬
+const codes2 = {
+  "+49": "독일",
+  "+41": "스위스",
+  "+44": "영국",
+  "+1": "미국",
+};
+
+for (const code in codes2) {
+  // 피연산자를 숫자로 변환
+  console.log(+code); // 49, 41, 44, 1
+}
+
